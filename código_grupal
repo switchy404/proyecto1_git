@@ -116,3 +116,5 @@ plt.show()
 sns.violinplot(x='Seasons', y='Rented Bike Count', data=df)
 plt.title('Distribución de bicicletas alquiladas por estación')
 plt.show()
+
+# DeQu, este archivo ya sirve por completo :cat:
