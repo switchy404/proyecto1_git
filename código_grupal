@@ -1,2 +1,23 @@
+import pandas as pd
+import seaborn as sn
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("SeoulBikeData_utf8.csv")
+
 # 1. Propuesta Grupal
 # DeQu, añade aquí porfavor la propuesta que planteaste
+
+# Análisis de datos, by Nicolás Yépez Obando
+
+stats = df.describe()
+print(stats)
+
+### Para los histogramas
+
+plt.hist(df["¿Qué variable?"], bins=45, edgecolor='black')
+plt.title(f"Histograma de {Variable}.")
+plt.xlabel("Valores")
+plt.ylabel("Frecuencia")
+plt.show()
+
+
