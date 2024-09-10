@@ -27,8 +27,7 @@ app.layout = html.Div([
         ],
         value=['Seasons'],  
         inline=True
-    ),
-    
+    ), 
     
     html.P("Seleccione filtros para el Gráfico de Barras por Hora:"),
     dcc.Dropdown(
@@ -42,8 +41,6 @@ app.layout = html.Div([
     dcc.Graph(id="bargraph", style={'width': '48%', 'display': 'inline-block'})],
     style={'display': 'flex', 'justify-content': 'space-between'}  ),
     
-     
-
     html.Div([
     html.H6("Introduzca los siguientes parámetros para estimar la demanda esperada:"),
     html.Div(["Temperatura (C) (use . como separación decimal): ",
@@ -65,11 +62,6 @@ app.layout = html.Div([
     html.Br(),
     html.Div(id='model-output')
     ])
-
-
-     
-
-
 
 @app.callback(
     [Output("boxgraph", "figure"), 
@@ -99,7 +91,6 @@ def actualizar_graficos(box_x, bar_x):
             bar_fig = px.bar(df.groupby('Hour')['Rented Bike Count'].mean().reset_index(),x = 'Hour' ,
                           y='Rented Bike Count', title="Promedio de Bicicletas Alquiladas por Hora", barmode = "group")
     return box_fig, bar_fig
-
 
 @app.callback(
     [Output("model-output", 'children')], 
