@@ -18,3 +18,69 @@ missing_values = df.isnull().sum().sum()
 df['Seasons'] = df['Seasons'].map({'Winter': 3, 'Spring': 2, 'Summer':1, 'Autumn':0})
 df['Holiday'] = df['Holiday'].map({'Holiday': 1, 'No Holiday': 0})
 df["Functioning Day"] = df['Functioning Day'].map({'Yes':1,'No':0})
+
+
+#MODELAMIENTO
+ft = ['Hour', 'Temperature(C)', 'Humidity(%)', 'Wind speed (m/s)', 'Visibility (10m)', 'Dew point temperature(C)', 'Solar Radiation (MJ/m2)',
+      'Rainfall(mm)', 'Snowfall (cm)', 'Seasons', 'Holiday', 'Functioning Day']
+xdf = df[ft]
+ydf = df['Rented Bike Count']
+from sklearn.model_selection import train_test_split
+xtrain, xtest, ytrain, ytest = train_test_split(xdf, ydf, random_state=1)
+from sklearn.linear_model import LinearRegression
+linreg = LinearRegression()
+linreg.fit(xtrain, ytrain)
+ypred = linreg.predict(xtest)
+
+from sklearn import metrics
+MAE = metrics.mean_absolute_error(ytest, ypred)
+MSE = metrics.mean_squared_error(ytest, ypred)
+RMSE = np.sqrt(MSE)
+
+print("MAE: ", MAE)
+print("MSE: ", MSE)
+print("RMSE: ", RMSE)
+
+import statsmodels.api as sm
+xtrain, xtest, ytrain, ytest = train_test_split(xdf, ydf, random_state=1)
+xtrain = sm.add_constant(xtrain)
+model = sm.OLS(ytrain, xtrain).fit()
+print(model.summary())
+
+ft = ['Hour', 'Temperature(C)', 'Humidity(%)', 'Wind speed (m/s)', 'Dew point temperature(C)', 'Solar Radiation (MJ/m2)',
+      'Rainfall(mm)', 'Seasons', 'Holiday', 'Functioning Day']
+xdf = df[ft]
+ydf = df['Rented Bike Count']
+
+X_train, X_test, y_train, y_test = train_test_split(xdf, ydf, random_state=1)
+
+linreg.fit(X_train, y_train)
+
+y_pred = linreg.predict(X_test)
+
+MAE = metrics.mean_absolute_error(y_test, y_pred)
+MSE = metrics.mean_squared_error(y_test, y_pred)
+RMSE = np.sqrt(MSE)
+
+print("MAE: ", MAE)
+print("MSE: ", MSE)
+print("RMSE: ", RMSE)
+
+xtrain, xtest, ytrain, ytest = train_test_split(xdf, ydf, random_state=1)
+xtrain = sm.add_constant(xtrain)
+model = sm.OLS(ytrain, xtrain).fit()
+print(model.summary())
+
+ft = ['Hour', 'Temperature(C)', 'Seasons', 'Holiday', ]
+xdf = df[ft]
+ydf = df['Rented Bike Count']
+
+X_train, X_test, y_train, y_test = train_test_split(xdf, ydf, random_state=1)
+
+linreg.fit(X_train, y_train)
+
+y_pred = linreg.predict(X_test)
+xtrain, xtest, ytrain, ytest = train_test_split(xdf, ydf, random_state=1)
+xtrain = sm.add_constant(xtrain)
+model = sm.OLS(ytrain, xtrain).fit()
+print(model.summary())
