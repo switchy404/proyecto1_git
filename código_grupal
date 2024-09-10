@@ -98,7 +98,7 @@ plt.title('Distribución de la temperatura. ')
 plt.show()
 
 # Diagrama de caja para la cantidad de bicicletas alquiladas por estación.
-sns.boxplot(x='Season', y='Rented Bike Count', data=df)
+sns.boxplot(x='Seasons', y='Rented Bike Count', data=df)
 plt.title('Bicicletas alquiladas por estación')
 plt.show()
 
