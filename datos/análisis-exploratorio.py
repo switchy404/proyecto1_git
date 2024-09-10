@@ -1,19 +1,3 @@
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-df = pd.read_csv("C:/Users/Nicolas/Downloads/SeoulBikeData_utf8.csv")
-
-# Alistamiento de Datos -------------------------------------------------------
-
-duplicates = len(df[df.duplicated()])
-missing_values = df.isnull().sum().sum()
-
-# Categóricas a Numéricas
-df['Seasons'] = df['Seasons'].map({'Winter': 3, 'Spring': 2, 'Summer':1, 'Autumn':0})
-df['Holiday'] = df['Holiday'].map({'Holiday': 1, 'No Holiday': 0})
-df["Functioning Day"] = df['Functioning Day'].map({'Yes':1,'No':0})
-
 # Análisis Exploratorio de datos -------------------------------------------------------
 
 df.head()
@@ -48,4 +32,35 @@ plt.show()
 # Diagrama de violín para la temperatura y las bicicletas alquiladas.
 sns.violinplot(x='Seasons', y='Rented Bike Count', data=df)
 plt.title('Distribución de bicicletas alquiladas por estación')
+plt.show()
+
+# DeQu, este archivo ya sirve por completo :cat:
+
+# Calcular la correlación entre las variables numéricas
+correlation_matrix = data[['Rented_Bike_Count', 'Temperature', 'Hour', 'Season', 'Holiday']].corr()
+
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
+plt.title('Matriz de Correlación')
+plt.show()
+
+# Relación entre temperatura y bicicletas alquiladas
+sns.scatterplot(x='Temperature', y='Rented_Bike_Count', data=data)
+plt.title('Relación entre temperatura y bicicletas alquiladas')
+plt.show()
+
+# Relación entre hora del día y bicicletas alquiladas
+sns.scatterplot(x='Hour', y='Rented_Bike_Count', data=data)
+plt.title('Relación entre hora del día y bicicletas alquiladas')
+plt.show()
+
+# Pairplot para ver relaciones entre múltiples variables
+sns.pairplot(data[['Rented_Bike_Count', 'Temperature', 'Hour', 'Season', 'Holiday']])
+plt.show()
+
+# Matriz de correlación para todas las variables numéricas
+corr_matrix = data[['Rented_Bike_Count', 'Temperature', 'Hour', 'Season', 'Holiday']].corr()
+
+# Heatmap de la matriz de correlación
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
+plt.title('Matriz de Correlación entre Variables')
 plt.show()

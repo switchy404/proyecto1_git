@@ -6,7 +6,7 @@ import plotly.express as px
 import pandas as pd
 import pandas as pd
 
-df = pd.read_csv("SeoulBikeData_utf8.csv")
+df = pd.read_csv("C:/Users/Nicolas/Downloads/SeoulBikeData_utf8.csv")
 dft = df.groupby("Temperature(C)")["Rented Bike Count"].mean()
 figt = px.scatter(dft, y = "Rented Bike Count", title = "Promedio de bicicletas por hora según temperatura", color_discrete_sequence=["Red"])
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
