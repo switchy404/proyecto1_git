@@ -1,17 +1,16 @@
+import numpy as np
 import pandas as pd
-import seaborn as sn
+import seaborn as sns
 import matplotlib.pyplot as plt
+import statsmodels.api as sm
+from sklearn import metrics
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
 
 df = pd.read_csv("SeoulBikeData_utf8.csv")
 
-# 1. Propuesta Grupal
-# DeQu, añade aquí porfavor la propuesta que planteaste
-
 #ALISTAMIENTO DE DATOS
-import numpy as np
-import pandas as pd
 
-df = pd.read_csv('.\\SeoulBikeData_utf8.csv')
 duplicates = len(df[df.duplicated()])
 missing_values = df.isnull().sum().sum()
 #Categoricas a numericas
@@ -25,14 +24,11 @@ ft = ['Hour', 'Temperature(C)', 'Humidity(%)', 'Wind speed (m/s)', 'Visibility (
       'Rainfall(mm)', 'Snowfall (cm)', 'Seasons', 'Holiday', 'Functioning Day']
 xdf = df[ft]
 ydf = df['Rented Bike Count']
-from sklearn.model_selection import train_test_split
 xtrain, xtest, ytrain, ytest = train_test_split(xdf, ydf, random_state=1)
-from sklearn.linear_model import LinearRegression
 linreg = LinearRegression()
 linreg.fit(xtrain, ytrain)
 ypred = linreg.predict(xtest)
 
-from sklearn import metrics
 MAE = metrics.mean_absolute_error(ytest, ypred)
 MSE = metrics.mean_squared_error(ytest, ypred)
 RMSE = np.sqrt(MSE)
@@ -41,7 +37,6 @@ print("MAE: ", MAE)
 print("MSE: ", MSE)
 print("RMSE: ", RMSE)
 
-import statsmodels.api as sm
 xtrain, xtest, ytrain, ytest = train_test_split(xdf, ydf, random_state=1)
 xtrain = sm.add_constant(xtrain)
 model = sm.OLS(ytrain, xtrain).fit()
