@@ -1,5 +1,5 @@
 import pandas as pd
-import seaborn as sn
+import seaborn as sns
 import matplotlib.pyplot as plt
 
 df = pd.read_csv("SeoulBikeData_utf8.csv")
@@ -20,4 +20,22 @@ plt.xlabel("Valores")
 plt.ylabel("Frecuencia")
 plt.show()
 
+### Para los diagramas de caja
 
+sns.boxplot(x=df["¿Qué variable?"])
+plt.title(f"Diagrama de caja de {Variable}")
+plt.show()
+
+### Para los diagramas de dispersión
+
+plt.scatter(df["¿Qué variable? (X)"], df["¿Qué variable? (Y)"])
+plt.title(f"Diagrama de dispersión entre {"¿Qué variable? (X)"} y {"¿Qué variable? (Y)"}.")
+plt.xlabel("¿Qué variable? (X)")
+plt.ylabel("¿Qué variable? (Y)")
+plt.show()
+
+### Para diagramas de violín
+
+sns.violinplot(x=df["¿Qué variable?"])
+plt.title('Diagrama de violín de tu_variable')
+plt.show()
