@@ -84,7 +84,7 @@ print(model.summary())
 # Análisis Exploratorio de datos -------------------------------------------------------
 
 df.head()
-variables = ['Hour', 'Temperature', 'Rented_Bike_Count']
+variables = ['Hour', 'Temperature(C)', 'Rented Bike Count']
 df[variables].describe()
 
 # Histograma de las bicicletas alquiladas.
