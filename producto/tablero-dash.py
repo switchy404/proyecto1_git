@@ -6,16 +6,16 @@ import plotly.express as px
 import pandas as pd
 import pandas as pd
 
-df = pd.read_csv("C:/Users/Nicolas/Downloads/SeoulBikeData_utf8.csv")
+df = pd.read_csv("SeoulBikeData_utf8.csv")
 dft = df.groupby("Temperature(C)")["Rented Bike Count"].mean()
-figt = px.scatter(dft, y = "Rented Bike Count", title = "Promedio de Bicicletas Alquiladas por hora según temperatura", color_discrete_sequence=["Red"])
+figt = px.scatter(dft, y = "Rented Bike Count", title = "Promedio de bicicletas por hora según temperatura", color_discrete_sequence=["Red"])
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
 
 app.layout = html.Div([
-    html.H4("Análisis de Bicicletas en Seúl"),
+    html.H4("Análisis de Bicicletas de Seúl"),
     
     html.Div([dcc.Graph(id ="scattergraph", figure = figt, style={'width': '100%'})]),
     html.P("Seleccione filtros para el Diagrama de Caja:"),
@@ -27,12 +27,13 @@ app.layout = html.Div([
         ],
         value=['Seasons'],  
         inline=True
-    ), 
+    ),
+    
     
     html.P("Seleccione filtros para el Gráfico de Barras por Hora:"),
     dcc.Dropdown(
         id='x-axis-bar', 
-        options=["Estaciones", "Festivo", "Ninguno"],
+        options=["Estaciones","Festivo", "Ninguno" ],
         value=['Estaciones'] 
         
     ),
@@ -40,7 +41,7 @@ app.layout = html.Div([
     html.Div([dcc.Graph(id="boxgraph", style={'width': '48%', 'display': 'inline-block'}),
     dcc.Graph(id="bargraph", style={'width': '48%', 'display': 'inline-block'})],
     style={'display': 'flex', 'justify-content': 'space-between'}  ),
-    
+
     html.Div([
     html.H6("Introduzca los siguientes parámetros para estimar la demanda esperada:"),
     html.Div(["Temperatura (C) (use . como separación decimal): ",
@@ -55,7 +56,7 @@ app.layout = html.Div([
                     id = "holiday-input",
                     options = ["Festivo", "No Festivo"],
                     value = ["No Festivo"])]),
-    html.Div([" Ingrese la hora de interés (de 0 a 24, solo enteros): ",
+    html.Div([" Escriba la hora de interés (de 0 a 24, solo enteros): ",
                  dcc.Input(id='hour-input', value=15, type='text')]
             )       
             ]),                
@@ -70,26 +71,26 @@ app.layout = html.Div([
      Input("x-axis-bar", "value")
      
      ])
-def actualizar_graficos(box_x, bar_x):
+def update_graphs(box_x, bar_x):
     if box_x:
         if len(box_x) == 1:
-            box_fig = px.box(df, x=box_x, y= "Rented Bike Count", title="Diagrama de Caja de Bicicletas Alquiladas por Hora")
+            box_fig = px.box(df, x=box_x, y= "Rented Bike Count", title="Diagrama de caja de bicicletas alquiladas por hora")
         elif len(box_x) == 2:
-            box_fig = px.box(df, x=box_x, y= "Rented Bike Count", color = box_x[1],  title="Diagrama de Caja de Bicicletas Alquiladas por Hora")
+            box_fig = px.box(df, x=box_x, y= "Rented Bike Count", color = box_x[1],  title="Diagrama de caja de bicicletas alquiladas por hora")
         else:
-            box_fig = px.box(df, y="Rented Bike Count",  title="Diagrama de Caja de Bicicletas Alquiladas por Hora")
+            box_fig = px.box(df, y="Rented Bike Count",  title="Diagrama de caja de bicicletas alquiladas por hora")
     if bar_x:
         if bar_x != "Ninguno":  
             bar_fig = px.bar(df.groupby(['Hour', bar_x])['Rented Bike Count'].mean().reset_index(),
                          x='Hour', y='Rented Bike Count', color=bar_x,
-                         title=f"Promedio de Bicicletas Alquiladas por Hora y {bar_x}", barmode = "group")
+                         title=f"Promedio de bicicletas alquiladas por hora y {bar_x}", barmode = "group")
 
         else:
             bar_fig = px.bar(df.groupby('Hour')['Rented Bike Count'].mean().reset_index(),x = 'Hour' ,
-                          y='Rented Bike Count', title="Promedio de Bicicletas Alquiladas por Hora", barmode = "group")
+                          y='Rented Bike Count', title="Promedio de bicicletas alquiladas por hora", barmode = "group")
     else:
             bar_fig = px.bar(df.groupby('Hour')['Rented Bike Count'].mean().reset_index(),x = 'Hour' ,
-                          y='Rented Bike Count', title="Promedio de Bicicletas Alquiladas por Hora", barmode = "group")
+                          y='Rented Bike Count', title="Promedio de bicicletas alquiladas por hora", barmode = "group")
     return box_fig, bar_fig
 
 @app.callback(
@@ -99,11 +100,24 @@ def actualizar_graficos(box_x, bar_x):
      Input("holiday-input", "value"),
      Input("hour-input", "value")
      ])
-def modelo_hecho(temp,seas,holi,hour):
-    valor_estacion = 2
-    valor_festivo = 3
-    estimado = 1*float(temp) + 2*valor_estacion + 3*valor_festivo + 4*int(hour)
-    respuesta = ("Para esta ocasión, se espera la siguiente demanda de bicicletas: {} ".format(estimado))
+def modelohecho(temp,seas,holi,hour):
+    if seas == "Invierno":
+        valorseason = 3
+    elif seas == "Primavera":
+        valorseason = 2
+    elif seas == "Verano":
+        valorseason = 1
+    else:
+        valorseason = 0
+    
+    if holi == "Festivo":
+        valorholi = 1
+    else:
+        valorholi = 0
+    
+    estimado = 125.2485 + 22.9249*float(temp) + -62.4998*valorseason + -132.4332*valorholi + 33.3688*int(hour)
+    estimado_rounded = round(estimado, 0)
+    respuesta = ("Para esta ocasión, se espera la siguiente demanda de bicicletas: {} ".format(estimado_rounded))
     return [respuesta]
 
 app.run_server(debug=True)
