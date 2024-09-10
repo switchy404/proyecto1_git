@@ -1,9 +1,5 @@
 El usuario final seleccionado es el área de operaciones del operador del sistema. 
-
 Preguntas de negocio: ¿En qué ocasiones se tiene alta demanda de bicicletas? ¿En que ocasiones se tienen bajas demandas? ¿Cómo influyen ciertas condiciones ambientales y temporales en la demanda de bicicletas compartidas? 
-
 Estas preguntas de negocio son importantes para el cliente por distintas razones. Por un lado, es importante para el cliente conocer como se comporta la demanda de bicicletas para poder asignar correctamente sus recursos. En este sentido, un conocimiento profundo de la relación entre las condiciones ambientales y su demanda les permitirá planear contrataciones, compras, mantenimiento, etc. para suplir la alta demanda o para ahorrar recursos en casos de baja demanda. Por otro lado, es importante para el cliente conocer la relevancia e impacto especifico de cada condición ambiental o climática pues esto le permitirá crear nuevas estrategias teniendo en cuenta las condiciones que más influyen en su demanda.  
-
 La visualización de los datos le permitirá conocer situaciones generales en las que suele tener altas y bajas demandas. Esto le permitiría contestar las primeras dos preguntas de negocio. Con ello el cliente estaría en capacidad de planificar para grandes periodos de tiempo o situaciones más generalizadas. 
-
 Por otro lado, el modelo le permitirá al cliente entender a profundidad el efecto de cada condición sobre la demanda de ventas, respondiendo a la tercera pregunta. Con esto, el cliente podría conocer con mayor precisión la demanda esperada de un día especifico dado un pronóstico de las condiciones ambientales de ese día. Gracias a esto el cliente podrá planificar con mayor detalle días críticos de funcionamiento e incluso variar sus estrategias de negocio. 
