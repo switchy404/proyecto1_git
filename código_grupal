@@ -103,7 +103,7 @@ plt.title('Bicicletas alquiladas por estación')
 plt.show()
 
 # Diagrama de caja para la temperatura.
-sns.boxplot(x='Season', y='Temperature(C)', data=df)
+sns.boxplot(x='Seasons', y='Temperature(C)', data=df)
 plt.title('Temperatura por estación')
 plt.show()
 
@@ -113,6 +113,6 @@ plt.title('Relación entre la temperatura y las bicicletas alquiladas')
 plt.show()
 
 # Diagrama de violín para la temperatura y las bicicletas alquiladas.
-sns.violinplot(x='Season', y='Rented Bike Count', data=df)
+sns.violinplot(x='Seasons', y='Rented Bike Count', data=df)
 plt.title('Distribución de bicicletas alquiladas por estación')
 plt.show()
