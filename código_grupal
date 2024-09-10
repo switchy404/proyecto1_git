@@ -7,7 +7,7 @@ from sklearn import metrics
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 
-df = pd.read_csv("C:\Users\Nicolas\Downloads\SeoulBikeData_utf8.csv")
+df = pd.read_csv("C:/Users/Nicolas/Downloads/SeoulBikeData_utf8.csv")
 
 # Alistamiento de Datos -------------------------------------------------------
 
