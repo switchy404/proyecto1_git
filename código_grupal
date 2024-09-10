@@ -88,31 +88,31 @@ variables = ['Hour', 'Temperature(C)', 'Rented Bike Count']
 df[variables].describe()
 
 # Histograma de las bicicletas alquiladas.
-sns.histplot(data['Rented_Bike_Count'], kde=True)
+sns.histplot(df['Rented_Bike_Count'], kde=True)
 plt.title('Distribución de bicicletas alquiladas. ')
 plt.show()
 
 # Histograma de la temperatura.
-sns.histplot(data['Temperature'], kde=True)
+sns.histplot(df['Temperature'], kde=True)
 plt.title('Distribución de la temperatura. ')
 plt.show()
 
 # Diagrama de caja para la cantidad de bicicletas alquiladas por estación.
-sns.boxplot(x='Season', y='Rented_Bike_Count', data=data)
+sns.boxplot(x='Season', y='Rented_Bike_Count', data=df)
 plt.title('Bicicletas alquiladas por estación')
 plt.show()
 
 # Diagrama de caja para la temperatura.
-sns.boxplot(x='Season', y='Temperature', data=data)
+sns.boxplot(x='Season', y='Temperature', data=df)
 plt.title('Temperatura por estación')
 plt.show()
 
 # Relación entre la temperatura y las bicicletas alquiladas.
-sns.scatterplot(x='Temperature', y='Rented_Bike_Count', data=data)
+sns.scatterplot(x='Temperature', y='Rented_Bike_Count', data=df)
 plt.title('Relación entre la temperatura y las bicicletas alquiladas')
 plt.show()
 
 # Diagrama de violín para la temperatura y las bicicletas alquiladas.
-sns.violinplot(x='Season', y='Rented_Bike_Count', data=data)
+sns.violinplot(x='Season', y='Rented_Bike_Count', data=df)
 plt.title('Distribución de bicicletas alquiladas por estación')
 plt.show()
