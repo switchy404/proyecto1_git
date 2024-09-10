@@ -4,7 +4,6 @@ from dash import html
 from dash.dependencies import Input, Output
 import plotly.express as px
 import pandas as pd
-import pandas as pd
 
 df = pd.read_csv("SeoulBikeData_utf8.csv")
 dft = df.groupby("Temperature(C)")["Rented Bike Count"].mean()

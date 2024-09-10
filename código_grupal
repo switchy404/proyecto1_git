@@ -126,11 +126,6 @@ sns.heatmap(mcorr, annot=True, cmap='coolwarm')
 plt.title('Matriz de Correlación')
 plt.show()
 
-# Relación entre temperatura y bicicletas alquiladas
-sns.scatterplot(x='Temperature(C)', y='Rented Bike Count', data=df)
-plt.title('Relación entre temperatura y bicicletas alquiladas')
-plt.show()
-
 # Relación entre hora del día y bicicletas alquiladas
 sns.scatterplot(x='Hour', y='Rented Bike Count', data=df)
 plt.title('Relación entre hora del día y bicicletas alquiladas')
@@ -138,9 +133,4 @@ plt.show()
 
 # Pairplot para ver relaciones entre múltiples variables
 sns.pairplot(df[['Rented Bike Count', 'Temperature(C)', 'Hour', 'Seasons', 'Holiday']])
-plt.show()
-
-# Heatmap de la matriz de correlación
-sns.heatmap(mcorr, annot=True, cmap='coolwarm')
-plt.title('Matriz de Correlación entre Variables')
 plt.show()
